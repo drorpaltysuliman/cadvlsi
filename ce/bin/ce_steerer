@@ -1,0 +1,5 @@
+#!/bin/bash
+
+perl $CE_HOME/lib/ce_steerer/$CE_STEERER/ce_steerer.pm $*;
+
+

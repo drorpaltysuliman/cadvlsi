@@ -1,0 +1,21 @@
+2018/04/25 04:58:40-/home/cad_vlsi/cad_vlsi/ce/lib/ce_steerer/1.0/ce_steerer.pm-ce_steerer::main- Creating new bash for project dummy
+2018/04/25 04:58:47-/home/cad_vlsi/cad_vlsi/ce/lib/ce_steerer/1.0/ce_steerer.pm-ce_steerer::main- Exit bash for project dummy
+2018/04/25 04:58:54-/home/cad_vlsi/cad_vlsi/ce/lib/ce_steerer/1.0/ce_steerer.pm-ce_steerer::main- Creating new bash for project dummy
+2018/04/25 04:59:00-/home/cad_vlsi/cad_vlsi/ce/lib/ce_steerer/1.0/ce_steerer.pm-ce_steerer::main- Exit bash for project dummy
+2019/03/25 20:27:01-/home/cad_vlsi/cad_vlsi/ce/lib/ce_steerer/1.0/ce_steerer.pm-ce_steerer::main- Creating new bash for project dummy
+2019/03/25 20:27:04-/home/cad_vlsi/cad_vlsi/ce/lib/ce_steerer/1.0/ce_steerer.pm-ce_steerer::main- Exit project dummy
+2019/03/25 20:29:37-/home/cad_vlsi/cad_vlsi/ce/lib/ce_steerer/1.0/ce_steerer.pm-ce_steerer::main- Creating new bash for project dummy
+2019/03/25 20:29:39-/home/cad_vlsi/cad_vlsi/ce/lib/ce_steerer/1.0/ce_steerer.pm-ce_steerer::main- Exit project dummy
+2019/03/25 20:32:32-/home/cad_vlsi/cad_vlsi/ce/lib/ce_steerer/1.0/ce_steerer.pm-ce_steerer::main- Creating new bash for project bla
+2019/03/25 20:32:37-/home/cad_vlsi/cad_vlsi/ce/lib/ce_steerer/1.0/ce_steerer.pm-ce_steerer::main- Exit project bla
+2019/03/25 20:35:36-/home/cad_vlsi/cad_vlsi/ce/lib/ce_steerer/1.0/ce_steerer.pm-ce_steerer::get_versions_table- No such project bla
+2019/03/25 20:35:43-/home/cad_vlsi/cad_vlsi/ce/lib/ce_steerer/1.0/ce_steerer.pm-ce_steerer::main- Creating new bash for project dummy
+2019/03/25 20:35:44-/home/cad_vlsi/cad_vlsi/ce/lib/ce_steerer/1.0/ce_steerer.pm-ce_steerer::main- Exit project dummy
+2019/03/25 20:43:43-/home/cad_vlsi/cad_vlsi/ce/lib/ce_steerer/1.0/ce_steerer.pm-ce_steerer::get_versions_table- Failed to read project common JSON
+2019/03/25 20:43:43-/home/cad_vlsi/cad_vlsi/ce/lib/ce_steerer/1.0/ce_steerer.pm-ce_steerer::main- Creating new bash for project common
+2019/03/25 20:43:52-/home/cad_vlsi/cad_vlsi/ce/lib/ce_steerer/1.0/ce_steerer.pm-ce_steerer::main- Exit project common
+2019/03/25 20:44:21-/home/cad_vlsi/cad_vlsi/ce/lib/ce_steerer/1.0/ce_steerer.pm-ce_steerer::get_versions_table- Failed to read project common JSON file
+2019/03/25 20:44:29-/home/cad_vlsi/cad_vlsi/ce/lib/ce_steerer/1.0/ce_steerer.pm-ce_steerer::main- Creating new bash for project dummy
+2019/03/25 20:44:32-/home/cad_vlsi/cad_vlsi/ce/lib/ce_steerer/1.0/ce_steerer.pm-ce_steerer::main- Exit project dummy
+2019/03/25 20:44:56-/home/cad_vlsi/cad_vlsi/ce/lib/ce_steerer/1.0/ce_steerer.pm-ce_steerer::main- Creating new bash for project dummy
+2019/03/25 20:44:58-/home/cad_vlsi/cad_vlsi/ce/lib/ce_steerer/1.0/ce_steerer.pm-ce_steerer::main- Exit project dummy

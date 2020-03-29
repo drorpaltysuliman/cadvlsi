@@ -1,0 +1,5 @@
+#!/bin/bash
+
+perl $CE_HOME/lib/version_control_wrapper/$VERSION_CONTROL_WRAPPER/version_control_wrapper.pm "$@";
+
+

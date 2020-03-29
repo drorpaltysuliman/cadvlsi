@@ -1,0 +1,11 @@
+#!/bin/bash
+
+NEW_TERM=bash
+if [ "$1" != '' ] && [ "$1" != "-help" ] && [ "$1" != "--help" ] && [ "$1" != "-h" ] 
+then
+    export CE_STEERER="1.0";
+    export PERL_PACKAGES="1.0";
+    $CE_HOME/bin/ce_steerer -shell_type 'bash' -project $1;
+else 
+    echo "Must specify project name: setup_project <project name>";
+fi 

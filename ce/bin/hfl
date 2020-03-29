@@ -1,0 +1,5 @@
+#!/bin/bash
+
+perl $CE_HOME/lib/hdl_file_list/$HDL_FILE_LIST/hdl_file_list.pm $*;
+
+
