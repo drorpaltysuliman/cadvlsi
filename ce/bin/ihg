@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export PERL5LIB=$CE_HOME/lib/ihc/$IHC:$PERL5LIB
+perl $CE_HOME/lib/ihc/$IHC/ihg.pm $*;
+
+
