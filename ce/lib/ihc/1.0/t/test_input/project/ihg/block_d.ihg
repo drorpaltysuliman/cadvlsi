@@ -1,0 +1,7 @@
+module block_d();
+
+module1 instance2(
+.clk(clk));
+module2 instance7();
+
+endmodule

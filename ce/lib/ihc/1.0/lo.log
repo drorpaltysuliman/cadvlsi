@@ -1,0 +1,293 @@
+t/test_gen_hdl.t .... ok
+Odd number of elements in anonymous hash at ihg.pm line 19.
+2019/08/01 01:40:08 Parsing t/test_input/project/ihg/top.ihg ...
+2019/08/01 01:40:08 Parsing t/test_input/project/ihg/block_d.ihg ...
+2019/08/01 01:40:08 Parsing t/test_input/project/ihg/block_a.ihg ...
+2019/08/01 01:40:08 Parsing t/test_input/project/ihg/block_c.ihg ...
+2019/08/01 01:40:08 Parsing t/test_input/project/ihg/block_b.ihg ...
+2019/08/01 01:40:08 Parsing t/test_input/project/src/module2.v ...
+2019/08/01 01:40:08 Parsing t/test_input/project/src/module1.v ...
+2019/08/01 01:40:08 Looking for top module ...
+$VAR1 = 3;
+2019/08/01 01:40:08 Generating block_d
+$VAR1 = bless( {
+                 'current_module' => 'block_d',
+                 'file_info' => {},
+                 'logger' => bless( {
+                                      'is_OFF' => sub { "DUMMY" },
+                                      'is_DEBUG' => sub { "DUMMY" },
+                                      'ERROR' => sub { "DUMMY" },
+                                      'is_INFO' => sub { "DUMMY" },
+                                      'layout' => undef,
+                                      'category' => 'parse_hdl',
+                                      'DEBUG' => sub { "DUMMY" },
+                                      'is_TRACE' => sub { "DUMMY" },
+                                      'additivity' => 1,
+                                      'TRACE' => $VAR1->{'logger'}{'DEBUG'},
+                                      'is_ALL' => sub { "DUMMY" },
+                                      'ALL' => $VAR1->{'logger'}{'DEBUG'},
+                                      'is_FATAL' => sub { "DUMMY" },
+                                      'is_WARN' => sub { "DUMMY" },
+                                      'FATAL' => $VAR1->{'logger'}{'ERROR'},
+                                      'appender_names' => [],
+                                      'INFO' => $VAR1->{'logger'}{'ERROR'},
+                                      'WARN' => $VAR1->{'logger'}{'ERROR'},
+                                      'level' => undef,
+                                      'num_appenders' => 0,
+                                      'OFF' => $VAR1->{'logger'}{'ERROR'},
+                                      'is_ERROR' => sub { "DUMMY" }
+                                    }, 'Log::Log4perl::Logger' ),
+                 'module' => {
+                               'block_d' => {
+                                              'modules' => {
+                                                             'module1' => 1,
+                                                             'module2' => 1
+                                                           },
+                                              'filestr' => 'module{%sp%}block_d();{%nl%}{%nl%}module1{%sp%}instance2({%nl%});{%nl%}module2{%sp%}instance7();{%nl%}{%nl%}endmodule',
+                                              'instance' => {
+                                                              'instance2' => {
+                                                                               'params' => {},
+                                                                               'ports' => {},
+                                                                               'module' => 'module1'
+                                                                             },
+                                                              'instance7' => {
+                                                                               'params' => {},
+                                                                               'ports' => {},
+                                                                               'module' => 'module2'
+                                                                             }
+                                                            }
+                                            }
+                             }
+               }, 'parse_hdl' );
+2019/08/01 01:40:08 Generating block_a
+$VAR1 = bless( {
+                 'current_module' => 'block_a',
+                 'file_info' => {},
+                 'logger' => bless( {
+                                      'is_OFF' => sub { "DUMMY" },
+                                      'is_DEBUG' => sub { "DUMMY" },
+                                      'ERROR' => sub { "DUMMY" },
+                                      'is_INFO' => sub { "DUMMY" },
+                                      'layout' => undef,
+                                      'category' => 'parse_hdl',
+                                      'DEBUG' => sub { "DUMMY" },
+                                      'is_TRACE' => sub { "DUMMY" },
+                                      'additivity' => 1,
+                                      'TRACE' => $VAR1->{'logger'}{'DEBUG'},
+                                      'is_ALL' => sub { "DUMMY" },
+                                      'ALL' => $VAR1->{'logger'}{'DEBUG'},
+                                      'is_FATAL' => sub { "DUMMY" },
+                                      'is_WARN' => sub { "DUMMY" },
+                                      'FATAL' => $VAR1->{'logger'}{'ERROR'},
+                                      'appender_names' => [],
+                                      'INFO' => $VAR1->{'logger'}{'ERROR'},
+                                      'WARN' => $VAR1->{'logger'}{'ERROR'},
+                                      'level' => undef,
+                                      'num_appenders' => 0,
+                                      'OFF' => $VAR1->{'logger'}{'ERROR'},
+                                      'is_ERROR' => sub { "DUMMY" }
+                                    }, 'Log::Log4perl::Logger' ),
+                 'module' => {
+                               'block_a' => {
+                                              'modules' => {
+                                                             'block_d' => 1,
+                                                             'module1' => 1
+                                                           },
+                                              'filestr' => 'module{%sp%}block_a();{%nl%}{%nl%}module1{%sp%}#(param{%sp%}DATA_WIDTH=3){%sp%}instance1();{%nl%}module1{%sp%}instance2({%nl%});{%nl%}{%nl%}block_d{%sp%}stam({%nl%}{%nl%}{%nl%});{%nl%}{%nl%}endmodule',
+                                              'instance' => {
+                                                              'instance2' => {
+                                                                               'params' => {},
+                                                                               'ports' => {},
+                                                                               'module' => 'module1'
+                                                                             },
+                                                              'stam' => {
+                                                                          'params' => {},
+                                                                          'ports' => {},
+                                                                          'module' => 'block_d'
+                                                                        },
+                                                              'instance1' => {
+                                                                               'params' => {},
+                                                                               'ports' => {},
+                                                                               'module' => 'module1'
+                                                                             }
+                                                            }
+                                            }
+                             }
+               }, 'parse_hdl' );
+2019/08/01 01:40:08 Generating block_c
+$VAR1 = bless( {
+                 'current_module' => 'block_c',
+                 'file_info' => {},
+                 'logger' => bless( {
+                                      'is_OFF' => sub { "DUMMY" },
+                                      'is_DEBUG' => sub { "DUMMY" },
+                                      'ERROR' => sub { "DUMMY" },
+                                      'is_INFO' => sub { "DUMMY" },
+                                      'layout' => undef,
+                                      'category' => 'parse_hdl',
+                                      'DEBUG' => sub { "DUMMY" },
+                                      'is_TRACE' => sub { "DUMMY" },
+                                      'additivity' => 1,
+                                      'TRACE' => $VAR1->{'logger'}{'DEBUG'},
+                                      'is_ALL' => sub { "DUMMY" },
+                                      'ALL' => $VAR1->{'logger'}{'DEBUG'},
+                                      'is_FATAL' => sub { "DUMMY" },
+                                      'is_WARN' => sub { "DUMMY" },
+                                      'FATAL' => $VAR1->{'logger'}{'ERROR'},
+                                      'appender_names' => [],
+                                      'INFO' => $VAR1->{'logger'}{'ERROR'},
+                                      'WARN' => $VAR1->{'logger'}{'ERROR'},
+                                      'level' => undef,
+                                      'num_appenders' => 0,
+                                      'OFF' => $VAR1->{'logger'}{'ERROR'},
+                                      'is_ERROR' => sub { "DUMMY" }
+                                    }, 'Log::Log4perl::Logger' ),
+                 'module' => {
+                               'block_c' => {
+                                              'modules' => {
+                                                             'module1' => 1,
+                                                             'module2' => 1
+                                                           },
+                                              'filestr' => 'module{%sp%}block_c();{%nl%}{%nl%}module1{%sp%}instance3();{%nl%}module1{%sp%}instance5();{%nl%}module2{%sp%}instance4();{%nl%}{%nl%}endmodule',
+                                              'instance' => {
+                                                              'instance3' => {
+                                                                               'params' => {},
+                                                                               'ports' => {},
+                                                                               'module' => 'module1'
+                                                                             },
+                                                              'instance5' => {
+                                                                               'params' => {},
+                                                                               'ports' => {},
+                                                                               'module' => 'module1'
+                                                                             },
+                                                              'instance4' => {
+                                                                               'params' => {},
+                                                                               'ports' => {},
+                                                                               'module' => 'module2'
+                                                                             }
+                                                            }
+                                            }
+                             }
+               }, 'parse_hdl' );
+2019/08/01 01:40:08 Generating block_b
+$VAR1 = bless( {
+                 'current_module' => 'block_b',
+                 'file_info' => {},
+                 'logger' => bless( {
+                                      'is_OFF' => sub { "DUMMY" },
+                                      'is_DEBUG' => sub { "DUMMY" },
+                                      'ERROR' => sub { "DUMMY" },
+                                      'is_INFO' => sub { "DUMMY" },
+                                      'layout' => undef,
+                                      'category' => 'parse_hdl',
+                                      'DEBUG' => sub { "DUMMY" },
+                                      'is_TRACE' => sub { "DUMMY" },
+                                      'additivity' => 1,
+                                      'TRACE' => $VAR1->{'logger'}{'DEBUG'},
+                                      'is_ALL' => sub { "DUMMY" },
+                                      'ALL' => $VAR1->{'logger'}{'DEBUG'},
+                                      'is_FATAL' => sub { "DUMMY" },
+                                      'is_WARN' => sub { "DUMMY" },
+                                      'FATAL' => $VAR1->{'logger'}{'ERROR'},
+                                      'appender_names' => [],
+                                      'INFO' => $VAR1->{'logger'}{'ERROR'},
+                                      'WARN' => $VAR1->{'logger'}{'ERROR'},
+                                      'level' => undef,
+                                      'num_appenders' => 0,
+                                      'OFF' => $VAR1->{'logger'}{'ERROR'},
+                                      'is_ERROR' => sub { "DUMMY" }
+                                    }, 'Log::Log4perl::Logger' ),
+                 'module' => {
+                               'block_b' => {
+                                              'modules' => {
+                                                             'module1' => 1,
+                                                             'module2' => 1
+                                                           },
+                                              'filestr' => 'module{%sp%}block_b();{%nl%}{%nl%}module1{%sp%}instance2({%nl%});{%nl%}module2{%sp%}instance7();{%nl%}{%nl%}endmodule',
+                                              'instance' => {
+                                                              'instance2' => {
+                                                                               'params' => {},
+                                                                               'ports' => {},
+                                                                               'module' => 'module1'
+                                                                             },
+                                                              'instance7' => {
+                                                                               'params' => {},
+                                                                               'ports' => {},
+                                                                               'module' => 'module2'
+                                                                             }
+                                                            }
+                                            }
+                             }
+               }, 'parse_hdl' );
+2019/08/01 01:40:08 Generating top
+$VAR1 = bless( {
+                 'current_module' => 'top',
+                 'file_info' => {},
+                 'logger' => bless( {
+                                      'is_OFF' => sub { "DUMMY" },
+                                      'is_DEBUG' => sub { "DUMMY" },
+                                      'ERROR' => sub { "DUMMY" },
+                                      'is_INFO' => sub { "DUMMY" },
+                                      'layout' => undef,
+                                      'category' => 'parse_hdl',
+                                      'DEBUG' => sub { "DUMMY" },
+                                      'is_TRACE' => sub { "DUMMY" },
+                                      'additivity' => 1,
+                                      'TRACE' => $VAR1->{'logger'}{'DEBUG'},
+                                      'is_ALL' => sub { "DUMMY" },
+                                      'ALL' => $VAR1->{'logger'}{'DEBUG'},
+                                      'is_FATAL' => sub { "DUMMY" },
+                                      'is_WARN' => sub { "DUMMY" },
+                                      'FATAL' => $VAR1->{'logger'}{'ERROR'},
+                                      'appender_names' => [],
+                                      'INFO' => $VAR1->{'logger'}{'ERROR'},
+                                      'WARN' => $VAR1->{'logger'}{'ERROR'},
+                                      'level' => undef,
+                                      'num_appenders' => 0,
+                                      'OFF' => $VAR1->{'logger'}{'ERROR'},
+                                      'is_ERROR' => sub { "DUMMY" }
+                                    }, 'Log::Log4perl::Logger' ),
+                 'module' => {
+                               'top' => {
+                                          'modules' => {
+                                                         'block_a' => 1,
+                                                         'block_c' => 1,
+                                                         'module1' => 1,
+                                                         'block_b' => 1
+                                                       },
+                                          'filestr' => 'module{%sp%}top();{%nl%}{%nl%}block_a{%sp%}#(param{%sp%}DATA_WIDTH=3){%sp%}instance1();{%nl%}block_b{%sp%}instance2({%nl%});{%nl%}block_b{%sp%}instance3();{%nl%}block_c{%sp%}instance4();{%nl%}module1{%sp%}direct_i();{%nl%}{%nl%}endmodule',
+                                          'instance' => {
+                                                          'instance3' => {
+                                                                           'params' => {},
+                                                                           'ports' => {},
+                                                                           'module' => 'block_b'
+                                                                         },
+                                                          'instance2' => {
+                                                                           'params' => {},
+                                                                           'ports' => {},
+                                                                           'module' => 'block_b'
+                                                                         },
+                                                          'direct_i' => {
+                                                                          'params' => {},
+                                                                          'ports' => {},
+                                                                          'module' => 'module1'
+                                                                        },
+                                                          'instance1' => {
+                                                                           'params' => {},
+                                                                           'ports' => {},
+                                                                           'module' => 'block_a'
+                                                                         },
+                                                          'instance4' => {
+                                                                           'params' => {},
+                                                                           'ports' => {},
+                                                                           'module' => 'block_c'
+                                                                         }
+                                                        }
+                                        }
+                             }
+               }, 'parse_hdl' );
+t/test_ihg.t ........ ok
+t/test_parse_hdl.t .. ok
+All tests successful.
+Files=3, Tests=17,  1 wallclock secs ( 0.02 usr  0.00 sys +  0.20 cusr  0.03 csys =  0.25 CPU)
+Result: PASS

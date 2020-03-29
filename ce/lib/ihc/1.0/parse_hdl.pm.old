@@ -1,0 +1,293 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+package parse_hdl;
+use Log::Log4perl qw(:easy);
+Log::Log4perl->easy_init($INFO);
+use Data::Dumper;
+
+
+use SPACE => '-%sp%-';
+use NEWLINE => '-%nl%-';
+
+sub new{
+    my $class = shift;
+    my $self = {'logger' => get_logger(),'file_info' => {}, 'modules' => {}};
+    #check if file exists 
+    bless $self, $class;
+    return $self;
+}
+
+sub check_line{
+	my ($line)=@_;
+	if ($line=~/^\s*$/){
+		return 1;
+		}
+	elsif ($line=~/^\s*\/\//){
+		return 1;
+		}
+	elsif ($line=~/^\s*--/){
+		return 1;
+		}
+	return 0;
+	}
+
+sub check_endmodule{
+	my ($line)=@_;
+        if ($line=~/^\s*endmodule/){
+		return 1;
+		}
+	return 0;
+	}
+
+sub get_name_and_type{
+	my ($line)=@_;
+	if ($line=~/^\s*(module|program|interface)\s+(\w+)/){
+		return ($1, $2);
+		}
+	return ("" , "");
+	}
+
+sub remove_special_marks{
+	my ($string)=@_;
+	$string=~s/=$//;
+	return $string;
+	}
+
+sub remove_spaces{
+	my ($string)=@_;
+	$string=~s/\s+//g;
+	return $string;
+	}
+	
+sub remove_functions{
+	my ($line)=@_;
+	if ($line=~/\bfunction\b/){
+		while ($line=<FILE>){
+			if ($line=~/\bendfunction\b/){last;}
+			}
+		}
+	return $line;
+	}
+sub remove_tasks{
+	my ($line)=@_;
+	if ($line=~/\btask\b/){
+		while ($line=<FILE>){
+			if ($line=~/\bendtask\b/){last;}
+			}
+		}
+	return $line;
+	}
+	
+sub remove_sv_clocking{
+	my ($line)=@_;
+	if ($line=~/^\s*\bclocking\b/){
+		while ($line=<FILE>){
+			if ($line=~/\bendclocking\b/){last;}
+			}
+		}
+	return $line;
+	}
+
+sub check_def_line{
+	my ($line,$current)=@_;
+	if ($line=~/`(ifdef|elsif)\s+(\w+)/){
+		return $1;
+		}
+	elsif ($line=~/`(ifdef|elsif)\s+(\w+)/){
+		return $1;
+		}
+	elsif ($line=~/`else/){
+        return "ELSE"
+		}
+	elsif ($line=~/`endif/){
+		return undef;
+		}
+    return $current;
+	}
+
+sub check_parameter_line{
+	my ($line,$current)=@_;
+	if ($line=~s/\bparameter\b//gi){
+		return 1;
+		}
+	if ($line=~/\);/){
+		return 0;
+		}
+    return $current;
+	}
+
+sub flat_file{
+    my (@lines)=@_;
+    my $str = join(@lines,NEWLINE);
+    $str=~s/\s/SPACE/g;
+    return $str;
+}
+
+sub reconstruct_file{
+    my ($str)=@_;
+    $str=~s/SPACE/ /;
+    my @lines = split($str,NEWLINE);
+    return @lines;
+}
+
+sub read_comments{
+    my ($str) = @_;
+    return erase_comments($str);
+}
+
+sub get_module_io{
+    my ($self,$str)=@_;
+    while($str=~s/((\binput\b|\boutput\b|\binout\b)\s*NEWLINE)//){
+        my $str_to_process = erase_comments($2);
+        
+    }
+}
+
+sub get_module_param{
+    my ($self,$str)=@_;
+    
+}
+
+sub get_module_instance{
+    my ($self)=@_;
+}
+
+sub get_module_info{
+    my ($self,$str)=@_;
+    $self->get_module_param();
+    $self->get_module_io();
+    $self->
+}
+
+sub read_file{
+    my ($self,$file)=@_;
+    my $module_name = undef;
+    my $param_flag = 0;
+    my $def_flag;
+    my @orig_lines = ();
+	open FILE ,$file or die "cannot open file $file : $!\n";
+    # put the file in an array
+    chomp(my @file_lines = <FILE>);
+    # get it in one big string to easily parse it.
+    my $str_file = flat_file(@file_lines);
+    while($str~s/(\bmodule\b\S+endmodule?)//){
+            get_modules_info($1); 
+    }
+	while (<FILE>){
+		chomp($_);
+        # saving the original lines
+        push(@orig_lines,$_);
+        #first look for the module name
+    	if (check_line($_)){next;}
+    	if (check_endmodule($_)){$module_name = undef}
+		$def_flag=check_def_line($_,$def_flag);
+		$param_flag=check_parameter_line($_,$param_flag);
+		$module_name=(defined get_module_name($_)) ? get_module_name($_) : $module_name;
+		$_=$self->skip_comments($_);
+		$_=remove_functions($_);
+		$_=remove_tasks($_);
+		$_=remove_sv_clocking($_);
+        next if not (defined $module_name);
+        $self->{'file_info'}->{$file}->{'modules'}->{$module_name} = 1;
+		$self->line_analyzer_file($module_name,$_,$param_flag,$def_flag);
+		}
+	close(FILE);
+    $self->{'file_info'}->{$file}->{'orig_lines'} = \@orig_lines;
+	}
+
+#-------------------------------------------------------------------------------
+# This function erase comments in a line 															
+#-------------------------------------------------------------------------------
+
+sub erase_comments{
+	my ($line)=@_;
+	$line=~s/(\/\/.*NEWLINE?)//g;
+	$line=~s/(--.*NEWLINE?)//g;
+	return $line;
+	}
+	
+
+
+
+sub line_analyzer_file{
+	my ($self,$module_name,$line,$parameter_flag,$if_flag)=@_;
+	my ($inout,$in_out_string,$size,$msb,$lsb,@lines);
+	chomp($line);
+	if ($parameter_flag==1){
+		$parameter_flag=1;
+		my @parameter=split(/,/,$line);
+		if ($line=~/(\)|;)/ and $line!~/\)\s*,/ and $line!~/\)\s*\?/ and $line!~/\)\s*\&/  and $line!~/\)\s*\|/){$parameter_flag=0;}
+		foreach my $parameter ( @parameter){
+			$parameter=~s/\s+//g;
+			if ($parameter=~/(\w+)\s*=\s*(\S+)/i){
+				my $number=$2;
+				my $param=$1;
+                $self->{'module'}->{$module_name}->{'parameter'}{$param} = $number;
+				}
+			}
+		}
+	if ($line=~/,\s*(\binput\b|\boutput\b|\binout\b)/){@lines=split(/,/,$line);}
+	else{push(@lines,$line);}
+	foreach $line (@lines){
+		$line=~s/^\s*\(//;
+		if ($line=~/^\s*(\binput\b|\boutput\b|\binout\b)\s*(\breg\b|\bwire\b|\bbit\b|)\s*\[\s*(.*)\s*:\s*(\S+)\s*\]\s*(\w+.*)/){
+			$parameter_flag=0;
+			$if_flag=1;
+			$inout=$1;
+			$in_out_string=$5;
+			$msb=$3;
+			$lsb=$4;
+			if ($in_out_string=~/,/){
+				$in_out_string=~s/,\s*$//;
+				my @port=split(',',$in_out_string);
+				for (my $i=0;$i<=$#port;$i++){
+                    $self->{'module'}->{$module_name}->{'io'}->{$port[$i]} = {'msb' => $msb, 'lsb' => $lsb, 'direction' => $inout};
+					}
+				}
+			else{
+                $self->{'module'}->{$module_name}->{'io'}->{$in_out_string} = {'size' => $size, 'direction' => $inout};
+				}
+        
+		} elsif($line=~/^\s*(\binput\b|\boutput\b|\binout\b)\s*(\breg\b|\bwire\b|\bbit\b|)\s*(.*)/){
+			$parameter_flag=0;
+			$if_flag=1;
+			$inout=$1;
+			$in_out_string=$3;
+			$in_out_string=fix_var($in_out_string);
+			if ($in_out_string=~/,/){
+		        my @port=split(',',$in_out_string);
+				for (my $i=0;$i<=$#port;$i++){
+                    $self->{'module'}->{$module_name}->{'io'}{$port[$i]} = {'size' => 1, 'direction' => $inout};
+				}
+			} else {
+                $self->{'module'}->{$module_name}->{'io'}->{$in_out_string} = {'size' => 1, 'direction' => $inout};
+			}
+		}
+	}
+}
+
+sub fix_var{
+	my ($var)=@_;
+	chomp($var);
+	my $CLOG2 = ($var=~s/(\$clog2\(.*\))/TEMPORARY_CLOG/) ? $1 : "";
+	$var=~s/\s*;\s*$//;
+	$var=~s/\s*,\s*$//;
+	$var=~s/\s*\)\s*\(?\s*$//;
+	$var=~s/TEMPORARY_CLOG/$CLOG2/;
+	return $var;
+	}
+
+
+
+sub get_module_name{
+	my ($line)=@_;
+	if ($line=~/^\s*(module|program|interface)\s+(\w+)/){
+		return $2;
+		}
+    return undef;
+	}
+
+

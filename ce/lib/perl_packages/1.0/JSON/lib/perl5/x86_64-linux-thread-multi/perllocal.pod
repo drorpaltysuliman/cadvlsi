@@ -1,0 +1,22 @@
+=head2 Wed Apr 25 01:38:28 2018: C<Module> L<JSON|JSON>
+
+=over 4
+
+=item *
+
+C<installed into: ../JSON/lib/perl5>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 2.97001>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+

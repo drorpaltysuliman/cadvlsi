@@ -1,0 +1,23 @@
+
+module block_a (
+/*autoinput*/ 
+/*autooutput*/ );
+
+/*autowire*/ 
+
+
+/*AUTO_TEMPLATE #(.DATA2(2)) instance\(\d+\)(
+.data_out_2(data_out_2 [2*$i1-:2]),
+.data_out(data_out_1 [$i1 ]));
+*/
+)
+
+module1 #(param DATA_WIDTH=3) instance0(
+);
+module1 instance1(
+);
+
+block_d stam(
+);
+
+endmodule

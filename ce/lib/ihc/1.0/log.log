@@ -1,0 +1,13 @@
+t/test_input/syntax_variant/uart1.v
+# Looks like you planned 9 tests but ran 6.
+t/test_parse_hdl.t .. 
+Dubious, test returned 255 (wstat 65280, 0xff00)
+Failed 3/9 subtests 
+
+Test Summary Report
+-------------------
+t/test_parse_hdl.t (Wstat: 65280 Tests: 6 Failed: 0)
+  Non-zero exit status: 255
+  Parse errors: Bad plan.  You planned 9 tests but ran 6.
+Files=1, Tests=6,  0 wallclock secs ( 0.02 usr  0.01 sys +  0.06 cusr  0.00 csys =  0.09 CPU)
+Result: FAIL

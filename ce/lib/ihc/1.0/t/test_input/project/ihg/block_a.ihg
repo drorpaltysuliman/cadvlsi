@@ -1,0 +1,13 @@
+
+module block_a();
+
+module1 #(param DATA_WIDTH=3) instance1();
+module1 instance2(
+);
+
+block_d stam(
+
+
+);
+
+endmodule

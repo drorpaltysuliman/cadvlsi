@@ -1,0 +1,32 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use Test::More tests => 3;
+use Data::Dumper;
+use FileHandle;
+
+BEGIN{use_ok('parse_hdl')}
+
+can_ok('parse_hdl','new');
+my $ph = parse_hdl->new("t/test_input/top.v");
+can_ok($ph,qw(read_file 
+check_line 
+check_endmodule 
+get_name_and_type 
+remove_special_marks 
+remove_spaces
+remove_functions
+remove_tasks
+remove_sv_clocking
+read_file
+check_def_line
+line_analyzer_file
+get_module_name));
+$ph->read_file('t/test_input/uart.v');
+print STDERR Dumper($ph)
+#is(join(":",$fl->get_blocks()),'ggg/hhh/lll.pl','check column line information');
+#$hfl->file_list_handle();
+#my @ARGV_DUMMY = ('-head','ggg/hhh/lll.pl','-array','lll','jjj','-bol');
+#isa_ok($ap,'arguments_parser');
+

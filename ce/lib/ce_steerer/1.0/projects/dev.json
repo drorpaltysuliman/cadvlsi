@@ -1,0 +1,7 @@
+{"tools" : {
+    "hdl_file_list" : {"ver" : "1.0"},
+    "config_parser" : {"ver" : "1.0"},
+    "version_control_wrapper" : {"ver" : "1.0" , "set" : [{"version_control_type" : "svn"}]}
+    }
+}
+

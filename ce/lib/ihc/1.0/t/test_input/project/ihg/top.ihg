@@ -1,0 +1,10 @@
+module top();
+
+block_a #(param DATA_WIDTH=3) instance1();
+block_b instance2(
+);
+block_b instance3();
+block_c instance4();
+module1 direct_i();
+
+endmodule

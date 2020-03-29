@@ -1,0 +1,34 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="perl" type="#PerlConfigurationType" factoryName="Perl" show_console_on_std_err="false" show_console_on_std_out="false">
+    <option name="alternativeSdkPath" value="" />
+    <option name="compileTimeBreakpointsEnabled" value="false" />
+    <option name="consoleCharset" value="UTF-8" />
+    <option name="envs">
+      <map />
+    </option>
+    <option name="nonInteractiveModeEnabled" value="false" />
+    <option name="passParentEnvs" value="true" />
+    <option name="perlParameters" value="" />
+    <option name="programParameters" value="-I." />
+    <option name="scriptPath" value="/usr/bin/prove" />
+    <option name="useAlternativeSdk" value="false" />
+    <option name="workingDirectory" value="" />
+    <option name="SCRIPT_PATH" value="/usr/bin/prove" />
+    <option name="PROGRAM_PARAMETERS" value="-I." />
+    <option name="PERL_PARAMETERS" value="" />
+    <option name="WORKING_DIRECTORY" value="" />
+    <option name="ENVS">
+      <map />
+    </option>
+    <option name="PASS_PARENT_ENVS" value="true" />
+    <option name="CHARSET" value="UTF-8" />
+    <option name="USE_ALTERNATIVE_SDK" value="false" />
+    <option name="ALTERNATIVE_SDK_PATH" value="" />
+    <option name="scriptCharset" value="utf8" />
+    <option name="startMode" value="RUN" />
+    <option name="isNonInteractiveModeEnabled" value="false" />
+    <option name="isCompileTimeBreakpointsEnabled" value="false" />
+    <option name="initCode" value="" />
+    <method v="2" />
+  </configuration>
+</component>

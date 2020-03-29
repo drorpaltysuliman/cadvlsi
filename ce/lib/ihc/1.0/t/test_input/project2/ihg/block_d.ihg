@@ -1,0 +1,19 @@
+module block_d #(parameter DATA_W2 = 5)(
+/*autoinput*/
+/*autooutput*/
+);
+
+/*autowire*/
+/*AUTO_TEMPLATE ins\(t\)ance\(\d+\)(
+.data_out(data_out_$i1_$i2));
+*/
+
+module1 #(.DATA_WIDTH(DATA_WIDTH)) instance2(
+);
+
+
+module2 #(.DATA_W2(DATA_W2)) instance7(
+
+);
+
+endmodule

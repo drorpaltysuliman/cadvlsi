@@ -1,0 +1,6 @@
+{
+"tools" : { "hdl_file_list" : {"ver" : "1.0"},
+"config_parser" : {"ver" : "1.0"},
+"dummy_tool" : "1.0"}
+}
+
