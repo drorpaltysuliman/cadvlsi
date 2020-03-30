@@ -50,6 +50,7 @@ sub extract_cmd{
         }
     }
     $self->{'file_ptr'} = $file_ptr;
+    $self->{'args'} = join(" ",@{$arguments_ptr})
 }
 
 
@@ -70,7 +71,7 @@ sub submit{
             common_package::run_system("$submit_cmd $message_arg$arg_space\"$message_descr\" $file");
         }
     } else {
-        common_package::run_system("$submit_cmd $message_arg \"$message_descr\" ");
+        common_package::run_system("$submit_cmd $message_arg \"$message_descr\" ".$self->{'args'});
     }
 }
 
@@ -78,9 +79,12 @@ sub common_exec{
     my ($self,$name)=@_;
     if ($self->{'config'}->{'vc_setup'}->{'type'} eq "file"){
         foreach my $file (keys %{$self->{'file_ptr'}->{'file'}}){
-            my $sync_cmd = $self->{'config'}->{$name}->{'cmd'};
-            common_package::run_system("$sync_cmd $file");
+            my $cmd = $self->{'config'}->{$name}->{'cmd'};
+            common_package::run_system("$cmd $file");
         }
+    } else {
+        my $cmd = $self->{'config'}->{$name}->{'cmd'};
+        common_package::run_system("$cmd ".$self->{'args'});
     }
 }
 

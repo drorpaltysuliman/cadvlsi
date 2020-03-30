@@ -1,6 +1,6 @@
 {   
     "setup_cmd" : {"cmd": "svnadmin create $REPO_DIR","description" : "Setup new repository to submit"},
-    "vc_setup"  : {"type": "file"},
+    "vc_setup"  : {"type": "dir"},
     "submit"    : {"cmd" : "svn ci","description" : "Submit the files", "args" : {"message" : "-m"},"args_type":"nospace"},
     "sync"      : {"cmd" : "svn co" ,"description" : "Check out the files"},
     "revert"    : {"cmd" : "svn revert" ,"description" : "Revert a file"},
