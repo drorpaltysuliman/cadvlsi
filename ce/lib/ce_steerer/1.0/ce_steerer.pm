@@ -36,7 +36,9 @@ sub new{
 sub get_versions_table{
     my ($self)=@_;
     my $conf_file = (defined $self->{'project'} and
-                        -f $self->{'dirname'}."/projects/".$self->{'project'}.".json") ?
+                        -f $self->{'dirname'}."/../../../projects/".$self->{'project'}.".json") ?
+                        $self->{'dirname'}."/../../../projects/".$self->{'project'}.".json" :
+                        (-f $self->{'dirname'}."/projects/".$self->{'project'}.".json") ?
                         $self->{'dirname'}."/projects/".$self->{'project'}.".json" :
                         undef;
     if (not $conf_file){
