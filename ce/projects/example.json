@@ -1,12 +1,11 @@
 { "tools" : {
     "hdl_file_list" : {"ver" : "1.0"},
-    "IHC" : {"ver" : "1.0"},
+    "ihc" : {"ver" : "1.0"},
     "config_parser" : {"ver" : "1.0"},
     "version_control_wrapper" : {   "ver" : "1.0" , 
                                     "set" : [{"version_control_type" : "svn"}, 
                                              {"SVN_VER" : "1.11.1"},
                                              {"REPO_DIR" : "/home/cad_vlsi/repository"},
-                                             {"concat(PATH,:)" : "$ENV{EXTERNAL_TOOLS}/svn/$ENV{SVN_VER}/bin"}]}},
-  "env" : [{"STAM" : "kkk"}]
+                                             {"concat(PATH,:)" : "$ENV{EXTERNAL_TOOLS}/svn/$ENV{SVN_VER}/bin"}]}}
 }
 

@@ -34,7 +34,9 @@ sub new{
 sub extract_cmd{
     my ($self,$arguments_ptr)=@_;
     my $file_ptr = {};
-    foreach my $arg (@{$arguments_ptr}){
+    my $extra_arg_location = (exists $self->{'config'}->{'import'}->{'extra_arg_location'}) ? $self->{'config'}->{'import'}->{'extra_arg_location'} : undef;
+    for my $i (0..$#{$arguments_ptr}){
+        my $arg = ${$arguments_ptr}[$i];
         continue if !defined $arg;
         if (-d $arg){
             if ($self->{'config'}->{'vc_setup'}->{'type'} eq "file"){
@@ -45,8 +47,10 @@ sub extract_cmd{
         } elsif (-f $arg){
             # add the file to the ptr 
             $file_ptr->{'file'}->{$arg} = 1;
-        } else {
-            $self->{'logger'}->error("Unrecognized argumnet $arg, skipping...");
+        # checking if an argument should be as part of the command and ignore it
+        } elsif (!defined $extra_arg_location or not (grep {$_ eq "$i"} @$extra_arg_location)) {
+            print "$i $arg @$extra_arg_location\n";
+            $self->{'logger'}->error("Unrecognized argument $arg, skipping...");
         }
     }
     $self->{'file_ptr'} = $file_ptr;
@@ -99,6 +103,21 @@ sub add{
     common_exec($self,"add")
 }
 
+sub import{
+    my ($self)=@_;
+    my $config = $self->{'config'}->{'import'};
+    my $import_cmd = $config->{'cmd'};
+    my $message_arg = $config->{'args'}->{'message'};
+    my $message_descr = $self->{'arg_handler'}->{'arguments'}->{'-m'}->{'val'};
+    my $arg_space = (exists $config->{'args_type'} and $config->{'args_type'} eq "nospace") ? "" : " ";
+    # make sure a message is entered
+    if (!defined $message_descr or $message_descr eq ''){
+        $self->{'logger'}->error("Please enter a message using -m argument");
+        exit(1);
+    } 
+    common_package::run_system("$import_cmd $message_arg \"$message_descr\" ".$self->{'args'});
+}
+
 sub revert{
     my ($self)=@_;
     common_exec($self,"revert")
@@ -125,6 +144,7 @@ sub run_func{
 sub init{
     my ($self)=@_;
     my $arg_handler = arguments_parser->new('return_not_exists');
+    $arg_handler->add_arg('import','To import new file to existing repository',{'default' => '0', 'type' => "bool"});
     $arg_handler->add_arg('submit','Use submit to submit files',{'default' => '0', 'type' => "bool"});
     $arg_handler->add_arg('sync','Use sync to update your directory',{'default' => '0','type' => "bool"});
     $arg_handler->add_arg('add','Use add to add new file',{'default' => '0','type' => "bool"});
