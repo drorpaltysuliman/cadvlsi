@@ -38,7 +38,7 @@ sub extract_cmd{
         continue if !defined $arg;
         if (-d $arg){
             if ($self->{'config'}->{'vc_setup'}->{'type'} eq "file"){
-                $file_ptr = get_recursive_dir_content($arg);
+                $file_ptr = common_package::get_recursive_dir_content($arg);
             } else {
                 $file_ptr->{'dir'}->{$arg} = 1;
             }
@@ -67,10 +67,10 @@ sub submit{
     } 
     if ($self->{'config'}->{'vc_setup'}->{'type'} eq "file"){
         foreach my $file (keys %{$self->{'file_ptr'}->{'file'}}){
-            run_system("$submit_cmd $message_arg$arg_space\"$message_descr\" $file");
+            common_package::run_system("$submit_cmd $message_arg$arg_space\"$message_descr\" $file");
         }
     } else {
-        run_system("$submit_cmd $message_arg \"$message_descr\" ");
+        common_package::run_system("$submit_cmd $message_arg \"$message_descr\" ");
     }
 }
 
@@ -79,7 +79,7 @@ sub common_exec{
     if ($self->{'config'}->{'vc_setup'}->{'type'} eq "file"){
         foreach my $file (keys %{$self->{'file_ptr'}->{'file'}}){
             my $sync_cmd = $self->{'config'}->{$name}->{'cmd'};
-            run_system("$sync_cmd $file");
+            common_package::run_system("$sync_cmd $file");
         }
     }
 }
