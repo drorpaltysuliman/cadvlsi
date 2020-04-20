@@ -8,6 +8,8 @@ use file_list_functions;
 use arguments_parser;
 use Data::Dumper;
 use Log::Log4perl qw(:easy);
+use File::Basename;
+
 Log::Log4perl->easy_init($INFO);
 
 __PACKAGE__->main() unless caller; # executes at run-time, unless used as module
@@ -47,11 +49,13 @@ sub print_file{
         open FILE ,">$file_list_name" or die "cannot open file $file_list_name : $!\n";
         foreach my $file (keys %{$info_ptr->{'filelist'}}){
             if ($info_ptr->{'filelist'}->{$file}->{'execute'} eq "vfile"){
-                print FILE "-v ";
+                print FILE "-v $file\n";
             } elsif ($info_ptr->{'filelist'}->{$file}->{'execute'} eq "yfile"){
-                print FILE "-y ";
+                print FILE "-y $file\n";
+            } elsif ($info_ptr->{'filelist'}->{$file}->{'execute'} eq "define"){
+                my $val = $info_ptr->{'filelist'}->{$file}->{'val'};
+                print FILE "+define+$file".((defined $val) ? "=".$val : "")."\n";
             } 
-            print FILE "$file\n";
         }
         close(FILE);
     } else {
@@ -82,6 +86,15 @@ sub set_vars{
     } 
 }
 
+sub get_template{
+    my ($self)=@_;
+    if ($self->{'args'}->{'-get_template'}->{'val'} eq 1){
+        my $current_dir = dirname(__FILE__);
+        system("cp $current_dir/template.pm .");
+        exit(0);
+    }
+}
+
 sub init{
     my ($self)=@_;
     my $arg_handler = arguments_parser->new();
@@ -89,6 +102,7 @@ sub init{
     $arg_handler->add_arg('-o','specify output file list name',{'default' => undef});
     $arg_handler->add_arg('-var','specify file list file name',{'type' => 'array' , 'default' => undef});
     $arg_handler->add_arg('-order','print file list according to order',{'type' => 'bool','default' => 0});
+    $arg_handler->add_arg('-get_template','Get template file',{'type' => 'bool','default' => 0});
     $arg_handler->process(@ARGV);
     $self->{'args'} = $arg_handler->{'arguments'};
 }
@@ -97,6 +111,7 @@ sub init{
 sub main{
     my $hdl_file_list = hdl_file_list->new();
     $hdl_file_list->init();
+    $hdl_file_list->get_template();
     $hdl_file_list->set_vars();    
     $hdl_file_list->print_file();
 }

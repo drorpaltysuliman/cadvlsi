@@ -37,6 +37,19 @@ sub get_fr_string{
 
 
 #########################
+# add_define 
+# input : $define -> name of the define
+#         $value -> if there is a value 
+# Description : This function should add single file to the file list
+
+sub add_file{
+    my ($define, $value) = @_;
+    # run checks hooks if needed by the customer
+    run_checks('add_define',$define);
+    $info_ptr->{'filelist'}->{$define} = {'type' => 'define' , 'order' => $counter++, 'execute' => 'define', 'val' => (undef $define) ? undef : $define};
+}
+
+#########################
 # add_file 
 # input : $file -> the name of the file needed to be added to the filelist 
 # Description : This function should add single file to the file list

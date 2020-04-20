@@ -89,9 +89,9 @@ sub set_env_var{
 sub set_env{
     my ($self)=@_;
     #set global environment variables
-    foreach my $var (@{$self->{'proj_info'}->{'env'}}){
+    if (defined $self->{'proj_info'}->{'env'}){
         #Environmnet variables to set in tools
-        $self->set_env_var($var);
+        $self->set_env_var($self->{'proj_info'}->{'env'});
     }    
     #set environment variables in tools
     foreach my $tool_name (keys %{$self->{'tools_info'}}){
